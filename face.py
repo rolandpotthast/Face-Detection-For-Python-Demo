@@ -1,4 +1,4 @@
-from fdlite import FaceDetection, FaceDetectionModel
+  from fdlite import FaceDetection, FaceDetectionModel
 from fdlite.render import Colors, detections_to_render_data, render_to_image
 import PIL
 
