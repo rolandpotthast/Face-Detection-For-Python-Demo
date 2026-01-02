@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
 from fdlite import FaceDetection, FaceDetectionModel
 from fdlite.render import Colors, detections_to_render_data, render_to_image
+
 import PIL
+import typer
+import pathlib
 
 
 def detect_faces(image: PIL.Image):
@@ -10,7 +14,7 @@ def detect_faces(image: PIL.Image):
     return faces
 
 
-def mark_faces(image_filename):
+def mark_faces(image_filename: pathlib.Path):
     """Mark all faces recognized in the image"""
     image = PIL.Image.open(image_filename)
 
@@ -25,4 +29,4 @@ def mark_faces(image_filename):
     image.save(image_filename.with_suffix(".out.jpg"))
 
 
-mark_faces("Apollo_11_Crew.jpg")
+if __name__ == '__main__': typer.run( mark_faces )
