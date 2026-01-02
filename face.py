@@ -29,4 +29,5 @@ def mark_faces(image_filename: pathlib.Path):
     image.save(image_filename.with_suffix(".out.jpg"))
 
 
-if __name__ == '__main__': typer.run( mark_faces )
+if __name__ == '__main__': 
+    typer.run( mark_faces )
