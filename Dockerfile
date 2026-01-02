@@ -1,18 +1,21 @@
 
 FROM python:3.10-slim-bookworm
 
-# --- proxy support (REQUIRED on DWD networks) ---
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
 ARG NO_PROXY
 
+# Uppercase (Docker convention)
 ENV HTTP_PROXY=${HTTP_PROXY}
 ENV HTTPS_PROXY=${HTTPS_PROXY}
 ENV NO_PROXY=${NO_PROXY}
-# -----------------------------------------------
+
+# Lowercase (APT / Debian convention)  ← THIS WAS MISSING
+ENV http_proxy=${HTTP_PROXY}
+ENV https_proxy=${HTTPS_PROXY}
+ENV no_proxy=${NO_PROXY}
 
 ARG DEBIAN_FRONTEND=noninteractive
-
 USER root
 
 # Run base setup
@@ -38,4 +41,4 @@ RUN pip3 install -r requirements.txt
 COPY --chown=dwd face.py .
 RUN chmod 775 face.py && ln -s $PWD/face.py $VIRTUAL_ENV/bin/face.py
 
-ENTRYPOINT ["face.py"]
+ENTRYPOINT ["python", "face.py"]
